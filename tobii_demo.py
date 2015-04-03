@@ -1,4 +1,4 @@
-# A demo for tracking eyedata using Tobii EyeX Controller. 2015.3.30 Yuan
+# A demo for tracking eyedata using Tobii EyeX Controller. 2015.4.3 Yuan
 # Tested in Python 2.7.6 (32 bit)
 # Dependencies
 # 	Tobii.EyeX.Client.dll: an original client library supplied by Tobii
@@ -18,8 +18,9 @@ if __name__ == '__main__':
 	win = visual.Window()
 	msg = visual.TextStim(win, text=u"Hello World!")
 
+	# ========== Trial 1 ==========
 	# Start tracking
-	tobii_dll.tobii_start()
+	tobii_dll.tobii_start(False)
 
 	# Show stimulus and wait for 3 seconds
 	msg.draw()
@@ -31,7 +32,21 @@ if __name__ == '__main__':
 	tobii_dll.tobii_stop()
 
 	# Save eyedata to file
-	tobii_dll.tobii_save("output.txt")
+	tobii_dll.tobii_save("output_1.txt")
+	# ========== Trial 1 end ==========
+
+	# ========== Trial 2 ==========
+	# Start tracking
+	tobii_dll.tobii_start()
+
+	core.wait(3)
+
+	# Stop tracking
+	tobii_dll.tobii_stop()
+
+	# Save eyedata to file
+	tobii_dll.tobii_save("output_2.txt")
+	# ========== Trial 2 end ==========
 
 	# Release the dll
 	win32api.FreeLibrary(tobii_dll._handle)
