@@ -4,6 +4,26 @@
 # 	Tobii.EyeX.Client.dll: an original client library supplied by Tobii
 #	MinimalGazeDataStream.dll: A C++ wrapper library for tracking eye based on the client dll above						
 # 	python modules: psychopy, win32api
+# Usage:
+# 	tobii_dll=CDLL('MinimalGazeDataStream_v2.dll')
+#
+#	#Trial 1
+#	tobii_dll.tobii_start(True)
+#	...
+#	tobii_dll.tobii_stop()
+#	tobii_dll.tobii_save("1.txt")
+#
+#	...
+#
+#	#Trial k
+#	tobii_dll.tobii_start(True)
+#	...
+#	tobii_dll.tobii_stop()
+#	tobii_dll.tobii_save("k.txt")
+#
+#	...
+#	# Experiment finish
+#	win32api.FreeLibrary(tobii_dll._handle)
 
 from psychopy import visual, core
 
@@ -12,7 +32,7 @@ import win32api
 
 if __name__ == '__main__':
 	# Load the dll
-	tobii_dll=CDLL('MinimalGazeDataStream.dll')
+	tobii_dll=CDLL('MinimalGazeDataStream_v2.dll')
 
 	# Experiment config
 	win = visual.Window()
@@ -20,7 +40,7 @@ if __name__ == '__main__':
 
 	# ========== Trial 1 ==========
 	# Start tracking
-	tobii_dll.tobii_start(False)
+	tobii_dll.tobii_start(True) # True: show eye data flow in console
 
 	# Show stimulus and wait for 3 seconds
 	msg.draw()
@@ -37,7 +57,7 @@ if __name__ == '__main__':
 
 	# ========== Trial 2 ==========
 	# Start tracking
-	tobii_dll.tobii_start()
+	tobii_dll.tobii_start(False) # False: don't show eye data flow
 
 	core.wait(3)
 
