@@ -1,11 +1,13 @@
 # A demo for tracking eyedata using Tobii EyeX Controller. 2015.4.3 Yuan
 # Tested in Python 2.7.6 (32 bit)
+# ATTENTION: If you run Python 64 bit, replace ./Tobii.EyeX.Client.dll 
+#            and ./MinimalGazeDataStream.dll with those in /lib/64/
 # Dependencies
 # 	Tobii.EyeX.Client.dll: an original client library supplied by Tobii
 #	MinimalGazeDataStream.dll: A C++ wrapper library for tracking eye based on the client dll above						
 # 	python modules: psychopy, win32api
 # Usage:
-# 	tobii_dll=CDLL('MinimalGazeDataStream_v2.dll')
+# 	tobii_dll=CDLL('MinimalGazeDataStream.dll')
 #
 #	#Trial 1
 #	tobii_dll.tobii_start(True)
@@ -32,7 +34,7 @@ import win32api
 
 if __name__ == '__main__':
 	# Load the dll
-	tobii_dll=CDLL('MinimalGazeDataStream_v2.dll')
+	tobii_dll=CDLL('MinimalGazeDataStream.dll')
 
 	# Experiment config
 	win = visual.Window()
